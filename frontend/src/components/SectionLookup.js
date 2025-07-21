@@ -82,7 +82,7 @@ function SectionLookup() {
           </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 2 }}>
             <Typography variant="subtitle2" sx={{ mr: 1 }}>Keywords:</Typography>
-            {result.keywords.map((keyword) => (
+            {Array.isArray(result.keywords) && result.keywords.map((keyword) => (
               <Chip key={keyword} label={keyword} size="small" />
             ))}
           </Box>
