@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper, CircularProgress, List, ListItem, ListItemText, Divider } from '@mui/material';
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = '/analyse-description'; // Use a relative path
 
 function AIAnalysis() {
   const [description, setDescription] = useState('');
@@ -20,7 +20,7 @@ function AIAnalysis() {
     setResult(null);
 
     try {
-      const response = await axios.post(`${API_URL}/analyse-description`, {
+      const response = await axios.post(API_URL, {
         description: description,
       });
       setResult(response.data);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper, CircularProgress, Divider, Chip } from '@mui/material';
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = '/sections'; // Use a relative base path
 
 function SectionLookup() {
   const [sectionNumber, setSectionNumber] = useState('');
@@ -20,7 +20,7 @@ function SectionLookup() {
     setResult(null);
 
     try {
-      const response = await axios.get(`${API_URL}/sections/${sectionNumber.trim()}`);
+      const response = await axios.get(`${API_BASE_URL}/${sectionNumber.trim()}`);
       setResult(response.data);
     } catch (err) {
       if (err.response && err.response.status === 404) {

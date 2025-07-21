@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper, CircularProgress, List, ListItem, ListItemText, Divider } from '@mui/material';
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = '/convert-ipc-to-bns'; // Use a relative path
 
 function IPCtoBNSConverter() {
   const [ipcSection, setIpcSection] = useState('');
@@ -21,7 +21,7 @@ function IPCtoBNSConverter() {
     setResult(null);
 
     try {
-      const response = await axios.post(`${API_URL}/convert-ipc-to-bns`, {
+      const response = await axios.post(API_URL, {
         ipc_section: ipcSection.trim(),
         description: description.trim() || undefined,
       });

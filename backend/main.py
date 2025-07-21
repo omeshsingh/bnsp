@@ -1,6 +1,8 @@
 # main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware # Import CORS
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import List, Optional
 import firebase_admin
@@ -51,6 +53,18 @@ app.add_middleware(
     allow_methods=["*"], # Allows all methods (GET, POST, etc.)
     allow_headers=["*"], # Allows all headers
 )
+
+# Mount the static files directory from the frontend build
+# This assumes the 'frontend' directory is a sibling of the 'backend' directory
+app.mount("/static", StaticFiles(directory="../frontend/build/static"), name="static")
+
+# Catch-all route to serve the React app's index.html for any non-API routes
+@app.get("/{full_path:path}")
+async def serve_react_app(full_path: str):
+    index_path = "../frontend/build/index.html"
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    raise HTTPException(status_code=404, detail="Frontend build not found.")
 
 
 class SectionRequest(BaseModel):

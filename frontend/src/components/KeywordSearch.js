@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Box, Typography, Paper, List, ListItem, ListItemText, CircularProgress, Chip, Divider } from '@mui/material';
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = '/suggest-sections'; // Use a relative path
 
 // A predefined list of common crime-related keywords.
 // In a real application, this might be fetched from the backend or a static file.
@@ -41,7 +41,7 @@ function KeywordSearch() {
 
     try {
       const keywordList = Array.from(selectedKeywords);
-      const response = await axios.post(`${API_URL}/suggest-sections`, {
+      const response = await axios.post(API_URL, {
         keywords: keywordList,
       });
       setResults(response.data);
