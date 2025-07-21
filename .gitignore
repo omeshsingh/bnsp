@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Dependencies
+/frontend/node_modules/
+/backend/venv/
+
+# Build artifacts
+/frontend/build/
+dist/
+build/
+
+# Environment variables
+.env
+*.env
+
+# Credentials
+firebase-credentials.json
+
+# IDE / Editor specific
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
